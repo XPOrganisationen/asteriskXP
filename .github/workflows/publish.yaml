@@ -1,0 +1,60 @@
+name: Publish container to GHCR
+run-name: Publish container to GHCR
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build_and_test:
+    uses: ./.github/workflows/ci.yaml # HASHPIN HERE AFTER PUSHED CHANGE OF ci.yaml.
+
+  build_docker_image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - name: Build Docker image
+        run: docker build -t app:test
+
+  deploy_crate:
+    name: Deploy crate to GHCR
+    needs: build_docker_image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha                     # For hashpinning, 7 symbols, ask OSNB if OK or long format is wanted.
+            type=raw, value=latest       # ...@latest
+
+      - name: Build and push
+        uses: docker/build-push-action@601a80b39c9405e50806ae38af30926f9d957c47
+        with:
+          context: .
+          push: 'true'
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
