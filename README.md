@@ -5,3 +5,6 @@ This project's raison d'être is to ease the pressure on ticket sales for a loca
 The easiest way to get started is to clone the project with `git clone` and navigate to the project folder. Then do `docker compose up <options>` and start selling tickets!
 Alternatively, you may (docker) pull a prebuilt image from https://github.com/XPOrganisationen/asteriskXP/pkgs/container/asteriskxp, choosing either :latest or a specific hash. Then run the container as usual with `docker run <options> asteriskxp:<tag>`. To get the latest image, do
 `docker pull ghcr.io/xporganisationen/asteriskxp:latest`
+
+### Just a test
+Temporary test to see if we have the organisational rights to edit the files. This can be removed at any time seen fit. 
