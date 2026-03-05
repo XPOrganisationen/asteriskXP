@@ -17,11 +17,19 @@ public class Seat {
     private Integer seatNumber;
 
     @Enumerated(EnumType.STRING)
-    private SeatType seatType;
+    private SeatAvailability seatAvailability;
 
     public Seat() {}
 
-    public Seat(Long theaterId, Integer rowNumber, Integer seatNumber, SeatType seatType) {
+    public Seat(Long theaterId, Integer rowNumber, Integer seatNumber, SeatAvailability seatAvailability) {
 
+    }
+
+    public SeatAvailability getSeatAvailability() {
+        return seatAvailability;
+    }
+
+    public void setSeatAvailability(SeatAvailability seatAvailability) {
+        this.seatAvailability = seatAvailability;
     }
 }
