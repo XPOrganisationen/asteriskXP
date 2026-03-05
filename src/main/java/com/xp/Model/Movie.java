@@ -32,9 +32,7 @@ public class Movie {
         return movieId;
     }
 
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
+    public void setMovieId(Long movieId) {}
 
     public Integer getAgeLimit() {
         return ageLimit;
