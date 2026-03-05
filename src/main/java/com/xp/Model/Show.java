@@ -12,12 +12,12 @@ public class Show {
     private Long showId;
 
     // Discuss this at daily standup
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "movie_id")
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "theater_id")
+    @ManyToOne
+    @JoinColumn(name = "theater_id", nullable = false)
     private Theater theater;
 
     private LocalDateTime startTime;

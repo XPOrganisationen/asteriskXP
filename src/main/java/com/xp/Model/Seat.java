@@ -9,8 +9,8 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatId;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "theater_id")
+    @ManyToOne
+    @JoinColumn(name = "theater_id", nullable = false)
     private Theater theater;
 
     private Integer rowNumber;

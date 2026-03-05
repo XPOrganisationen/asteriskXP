@@ -11,8 +11,8 @@ public class Theater {
     private Integer numberOfRows;
     private Integer seatsPerRow;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "cinema_id")
+    @ManyToOne
+    @JoinColumn(name = "cinema_id", nullable = false)
     private Cinema cinema;
 
     public Theater() {}
