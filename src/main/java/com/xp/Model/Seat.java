@@ -24,4 +24,12 @@ public class Seat {
     public Seat(Long theaterId, Integer rowNumber, Integer seatNumber, SeatAvailability seatAvailability) {
 
     }
+
+    public SeatAvailability getSeatAvailability() {
+        return seatAvailability;
+    }
+
+    public void setSeatAvailability(SeatAvailability seatAvailability) {
+        this.seatAvailability = seatAvailability;
+    }
 }
