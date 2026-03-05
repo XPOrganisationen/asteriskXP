@@ -10,11 +10,11 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reservationId;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "show_id")
+    @ManyToOne
+    @JoinColumn(name = "show_id", nullable = false)
     private Show show;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reservation_id")
+    @OneToMany
+    @JoinColumn(name = "reservation_id", nullable = false)
     private List<MovieTicket> movieTickets;
 }

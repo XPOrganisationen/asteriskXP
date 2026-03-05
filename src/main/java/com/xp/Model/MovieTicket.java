@@ -10,12 +10,12 @@ public class MovieTicket {
 
     private Double price;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "show_id")
+    @ManyToOne
+    @JoinColumn(name = "show_id", nullable = false)
     private Show show;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "seat_id")
+    @OneToOne
+    @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat;
 
     public MovieTicket() {}
