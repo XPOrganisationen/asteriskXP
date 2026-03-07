@@ -2,7 +2,7 @@ DROP SCHEMA IF EXISTS xpdb;
 CREATE SCHEMA IF NOT EXISTS xpdb;
 USE xpdb;
 DROP TABLE IF EXISTS reservations;
-DROP TABLE IF EXISTS movietickets;
+DROP TABLE IF EXISTS movie_tickets;
 DROP TABLE IF EXISTS seats;
 DROP TABLE IF EXISTS shows;
 DROP TABLE IF EXISTS theaters;
@@ -55,23 +55,23 @@ CREATE TABLE seats (
     CONSTRAINT NO_DUPLICATE_seats_IN_ONE_THEATER UNIQUE (theater_id, ro_number, seat_number)
 );
 
-CREATE TABLE movietickets (
-	movie_ticket_id INT PRIMARY KEY AUTO_INCREMENT,
-    price DOUBLE,
-    show_id INT,
-    seat_id INT,
-    FOREIGN KEY (show_id) REFERENCES shows(show_id),
-    FOREIGN KEY (seat_id) REFERENCES seats(seat_id)
-);
-
 CREATE TABLE reservations (
-	reservation_id INT PRIMARY KEY AUTO_INCREMENT,
-    show_id INT,
-    ticket_id INT,
+    reservation_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    show_id BIGINT,
     customer_name TEXT,
     customer_email TEXT,
     reservation_time DATETIME,
     total_price double,
+    FOREIGN KEY (show_id) REFERENCES shows(show_id)
+);
+
+CREATE TABLE movie_tickets (
+    movie_ticket_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    price DOUBLE,
+    show_id BIGINT,
+    seat_id BIGINT,
+    reservation_id BIGINT,
     FOREIGN KEY (show_id) REFERENCES shows(show_id),
-    FOREIGN KEY (ticket_id) REFERENCES movietickets(movie_ticket_id)
+    FOREIGN KEY (seat_id) REFERENCES seats(seat_id),
+    FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
 );

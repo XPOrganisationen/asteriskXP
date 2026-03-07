@@ -55,4 +55,10 @@ public interface MovieRepository extends JpaRepository <Movie, Long> {
     // Finds all movies which fit one of the categories passed by the user.
 
     List<Movie> findAllByAgeLimitLessThanEqual(Integer ageLimit);
+
+    @Query("""
+            SELECT DISTINCT(movieCategory)
+            FROM Movie
+            """)
+    List<String> findAllCategories();
 }

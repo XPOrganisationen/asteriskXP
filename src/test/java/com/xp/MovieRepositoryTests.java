@@ -182,4 +182,17 @@ public class MovieRepositoryTests {
         List<Movie> actual = movieRepository.findAllMatchingCategoryList(List.of("Horror", "Science Fiction"));
         org.junit.jupiter.api.Assertions.assertEquals(expectedMovies, actual);
     }
+
+    @Test
+    public void findAllCategoriesReturnsAllCategoriesFromTestDb() {
+        List<String> expectedCategories =  List.of(
+          "Science Fiction",
+          "Romantic Comedy",
+          "Horror",
+          "Documentary",
+          "Animation"
+        );
+
+        org.junit.jupiter.api.Assertions.assertTrue(movieRepository.findAllCategories().containsAll(expectedCategories));
+    }
 }

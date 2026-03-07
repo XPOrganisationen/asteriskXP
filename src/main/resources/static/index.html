@@ -3,28 +3,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>XPKino</title>
+    <title>KinoXP</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="favicon.png">
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <header id="index-header">
+        <a href="login.html">Medarbejderlogin</a>
+        <h2>KinoXP</h2>
+        <a href="filter_movie_search.html">Søg efter en film</a>
+    </header>
     <main>
-        <section class="scroll--root">
-            <h1>Populære film</h1>
-            <div id="scroller" class="scroll--viewport">
-                <ul class="scroll--content">
-                    <!-- Inject kort her fra mostPopular -->
-                </ul>
-            </div>
-        </section>
+        <div id="index-main-content">
+            <section class="scroll--root">
+                <h1>Populære film</h1>
+                <div id="scroller" class="scroll--viewport">
+                    <ul class="scroll--content">
+                        <!-- Inject kort her fra mostPopular -->
+                    </ul>
+                </div>
+            </section>
 
-        <section>
-            <h1>Film der vises snart med ledige pladser</h1>
-            <div id="soon-grid">
-                <!-- Inject kort fra seatsAvailableShownSoon -->
-            </div>
-        </section>
+            <section>
+                <h1>Film der vises snart med ledige pladser</h1>
+                <div id="soon-grid">
+                    <!-- Inject kort fra seatsAvailableShownSoon -->
+                </div>
+            </section>
+        </div>
+
     </main>
 </body>
 

@@ -26,6 +26,11 @@ public class MovieController {
         return this.movieService.findById(movieId);
     }
 
+    @GetMapping("by-title/{movieTitle}")
+    public List<Movie> getMovieByTitle(@PathVariable String movieTitle) {
+        return this.movieService.findAllByTitle(movieTitle);
+    }
+
     @GetMapping("by-popularity")
     public List<Movie> getPopularMovies() {
         return this.movieService.findAllOrderByPopularityDesc();
@@ -36,9 +41,14 @@ public class MovieController {
         return this.movieService.findAllOrderBySeatsAvailableShownSoon();
     }
 
-    @GetMapping("by-filter")
+    @PostMapping("by-filter")
     public List<Movie> getMoviesByFilter(@RequestBody MovieFilter movieFilter) {
         return this.movieService.findAllByFilter(movieFilter);
+    }
+
+    @GetMapping("categories")
+    public List<String> getCategories() {
+        return this.movieService.findAllCategories();
     }
 
     @PostMapping

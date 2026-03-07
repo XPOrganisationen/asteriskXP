@@ -116,6 +116,11 @@ public class MovieServiceImpl implements MovieService {
         return findAllByTitle(movieFilter.title());
     }
 
+    @Override
+    public List<String> findAllCategories() {
+        return movieRepository.findAllCategories();
+    }
+
     private List<Movie> findAllMatchingCategoryList(List<String> categoryList) {
         return movieRepository.findAllMatchingCategoryList(categoryList);
     }

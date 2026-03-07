@@ -15,4 +15,5 @@ public interface MovieService {
     public List<Movie> findAllOrderByPopularityDesc();
     public List<Movie> findAllOrderBySeatsAvailableShownSoon();
     public List<Movie> findAllByFilter(MovieFilter movieFilter);
+    public List<String> findAllCategories();
 }
