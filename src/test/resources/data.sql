@@ -16,6 +16,16 @@ INSERT INTO cinemas (cinema_name, cinema_address) VALUES
 -- Theater 1: 5 rows x 6 seats = 30
 -- Theater 2: 3 rows x 4 seats = 12
 -- Theater 1 (a differenct cinema): 4 rows x 5 seats = 20
+
+-- Tilføjet data til Employees
+INSERT INTO employees (employee_username, employee_name, employee_password) VALUES
+                                                      ('mabr0011', 'Markus', '1234'),
+                                                      ('masc1001', 'Max-Emil', '2345'),
+                                                      ('fija0001', 'Filip', '3456'),
+                                                      ('pajo0001', 'Patrick', '4567');
+
+
+
 INSERT INTO theaters (theater_name, number_of_rows, seats_per_row, cinema_id) VALUES
                                                                                   ('Screen 1', 5, 6, 1), -- Downtown Cinema
                                                                                   ('Screen 2', 3, 4, 1),

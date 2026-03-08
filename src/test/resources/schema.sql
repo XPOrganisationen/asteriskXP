@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS shows;
 DROP TABLE IF EXISTS theaters;
 DROP TABLE IF EXISTS cinemas;
 DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS employees;
 
 CREATE TABLE IF NOT EXISTS movies (
 	movie_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,6 +33,15 @@ CREATE TABLE IF NOT EXISTS theaters (
     seats_per_row INT,
     cinema_id INT,
     FOREIGN KEY (cinema_id) REFERENCES cinemas(cinema_id) ON DELETE CASCADE
+);
+
+-- Tilføjet tabel til employees
+CREATE TABLE IF NOT EXISTS employees (
+                                       employee_id INT PRIMARY KEY AUTO_INCREMENT,
+                                       employee_username TEXT,
+                                       employee_name TEXT,
+                                       employee_password TEXT
+
 );
 
 CREATE TABLE shows (
