@@ -1,6 +1,7 @@
-package com.xp.Model;
+package com.xp.model;
 
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"theater", "rownumber", "seatnumber"}))
@@ -12,6 +13,7 @@ public class Seat {
     @ManyToOne
     @JoinColumn(name = "theater_id", nullable = false)
     private Theater theater;
+
 
     private Integer rowNumber;
     private Integer seatNumber;

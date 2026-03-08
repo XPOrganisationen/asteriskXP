@@ -1,4 +1,4 @@
-package com.xp.Model;
+package com.xp.model;
 
 import jakarta.persistence.*;
 

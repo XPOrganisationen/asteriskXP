@@ -1,6 +1,6 @@
-package com.xp.Repository;
+package com.xp.repository;
 
-import com.xp.Model.Movie;
+import com.xp.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
