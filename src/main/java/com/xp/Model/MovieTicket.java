@@ -1,4 +1,4 @@
-package com.xp.model;
+package com.xp.Model;
 
 import jakarta.persistence.*;
 
@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class MovieTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "movie_ticket_id")
     private Integer movieTicketId;
 
     private Double price;
@@ -18,6 +19,10 @@ public class MovieTicket {
     @OneToOne
     @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id", nullable = false)
+    private Reservation reservation;
 
     public MovieTicket() {}
 
