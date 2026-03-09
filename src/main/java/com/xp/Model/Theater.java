@@ -1,5 +1,6 @@
-package com.xp.model;
+package com.xp.Model;
 
+import com.xp.Model.Cinema;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
