@@ -1,5 +1,6 @@
 package com.xp.Model;
 
+import com.xp.model.Cinema;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +15,7 @@ public class Theater {
 
     @ManyToOne
     @JoinColumn(name = "cinema_id", nullable = false)
-    private Cinema cinema;
+    private com.xp.model.Cinema cinema;
 
     public Theater() {}
 
@@ -28,7 +29,7 @@ public class Theater {
         return this.theaterId;
     }
 
-    public Cinema getCinema() {
+    public com.xp.model.Cinema getCinema() {
         return cinema;
     }
 
