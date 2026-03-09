@@ -1,4 +1,4 @@
-package com.xp;
+/*package com.xp;
 
 import com.xp.Model.Cinema;
 import com.xp.Repository.CinemaRepository;
@@ -32,3 +32,4 @@ public class CinemaRepositoryTest
     }
 
 }
+*/

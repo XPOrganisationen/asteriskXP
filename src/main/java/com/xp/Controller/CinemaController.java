@@ -2,7 +2,7 @@ package com.xp.Controller;
 
 
 import com.xp.Model.Cinema;
-import com.xp.service.CinemaService;
+import com.xp.Service.CinemaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

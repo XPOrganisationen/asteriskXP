@@ -1,4 +1,4 @@
-package com.xp.service;
+package com.xp.Service;
 
 import com.xp.Model.Cinema;
 import com.xp.Repository.CinemaRepository;
