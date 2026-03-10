@@ -1,5 +1,8 @@
-package com.xp.Model;
+package com.xp.Model.DTOs;
 
+import com.xp.Model.SeatAvailability;
+import com.xp.Model.SeatType;
+import com.xp.Model.Theater;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -22,32 +25,15 @@ public class Seat {
     private Integer seatNumber;
 
     @Enumerated(EnumType.STRING)
-    private SeatAvailability seatAvailability;
-
-    @Enumerated(EnumType.STRING)
     private SeatType seatType;
-
-    @Version
-    private Long version;
-    // @Version
-    // private Long version;
 
     public Seat() {}
 
-    public Seat(Theater theater, Integer rowNumber, Integer seatNumber, SeatAvailability seatAvailability, SeatType seatType) {
+    public Seat(Theater theater, Integer rowNumber, Integer seatNumber, SeatType seatType) {
         this.theater = theater;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
-        this.seatAvailability = seatAvailability;
         this.seatType = seatType;
-    }
-
-    public SeatAvailability getSeatAvailability() {
-        return seatAvailability;
-    }
-
-    public void setSeatAvailability(SeatAvailability seatAvailability) {
-        this.seatAvailability = seatAvailability;
     }
 
     public Long getSeatId() {
@@ -94,11 +80,11 @@ public class Seat {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Seat seat = (Seat) o;
-        return Objects.equals(seatId, seat.seatId) && Objects.equals(theater, seat.theater) && Objects.equals(rowNumber, seat.rowNumber) && Objects.equals(seatNumber, seat.seatNumber) && seatAvailability == seat.seatAvailability && Objects.equals(version, seat.version);
+        return Objects.equals(seatId, seat.seatId) && Objects.equals(theater, seat.theater) && Objects.equals(rowNumber, seat.rowNumber) && Objects.equals(seatNumber, seat.seatNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(seatId, theater, rowNumber, seatNumber, seatAvailability, version);
+        return Objects.hash(seatId, theater, rowNumber, seatNumber);
     }
 }

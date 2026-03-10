@@ -1,6 +1,7 @@
 package com.xp.Service;
 
 import com.xp.Model.*;
+import com.xp.Model.DTOs.Seat;
 import com.xp.Repository.SeatRepository;
 import com.xp.Repository.ShowRepository;
 import com.xp.Repository.TicketRepository;
@@ -30,6 +31,7 @@ public class TicketService {
     public MovieTicket findMovieTicketById(Long id) {
         return ticketRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie ticket not found"));
     }
+
     public double calculateTotalPrice(TicketType ticketType, SeatType seatType, int quantity, Movie movie) {
 
         double pricePerTicket = ticketType.getPrice(); // priser for de diverse biletter findes i TicketType Enum :)
@@ -56,64 +58,29 @@ public class TicketService {
     }
 
     @Transactional
-    public MovieTicket createTicket(Show show, Seat seat, TicketType ticketType) {
+    public MovieTicket createTicket(Show show, ShowSeat showSeat, TicketType ticketType) {
 
-        boolean taken = ticketRepository.existsByShowAndSeat(show, seat);
+        boolean taken = ticketRepository.existsByShowAndSeat(show, showSeat);
 
         if (taken) {
             throw new IllegalStateException("Seat already taken for this viewing");
         }
 
-        double price = calculateTotalPrice(ticketType, seat.getSeatType(), 1, show.getMovie());
+        double price = calculateTotalPrice(ticketType, showSeat.getSeat().getSeatType(), 1, show.getMovie());
 
         MovieTicket ticket = new MovieTicket();
-        ticket.setSeat(seat);
+        ticket.setSeat(showSeat);
         ticket.setShow(show);
         ticket.setPrice(price);
 
         return ticketRepository.save(ticket);
     }
 
-    public List<Seat> getSeatsForShow(Show show) {
-        List<Seat> seats = seatRepository.findByTheater(show.getTheater());
-
-        List<MovieTicket> tickets = ticketRepository.findByShow(show);
-
-        for (MovieTicket ticket : tickets) {
-            Seat reservedSeat = ticket.getSeat();
-
-            for (Seat seat : seats) {
-                if (seat.getSeatId().equals(reservedSeat.getSeatId())) {
-                    seat.setSeatAvailability(SeatAvailability.RESERVED);
-                }
-            }
-        }
-        return seats;
-    }
-
     public Show findShowById(Long showId) {
         return showRepository.findById(showId).orElseThrow(() -> new RuntimeException("Show not found with id -> " + showId));
     }
 
-    public Seat findSeatById(Long seatId) {
+    public ShowSeat findSeatById(Long seatId) {
         return seatRepository.findById(seatId).orElseThrow(() -> new RuntimeException("Seat not found with it ->" + seatId));
-    }
-
-    @Transactional
-    public void changeSeatTypeIfAdmin(Long showId, Long seatId, SeatAvailability newAvailability) {
-        Show show = findShowById(showId);
-        Seat seat = findSeatById(seatId);
-
-        if (newAvailability == SeatAvailability.RESERVED) {
-            throw new IllegalArgumentException("Cannot change seat type if type = reserved");
-        }
-
-        List<Seat> seats = getSeatsForShow(show);
-
-        for (Seat s : seats) {
-            if (s.getSeatId().equals(seatId)) {
-                s.setSeatAvailability(newAvailability);
-            }
-        }
     }
 }

@@ -1,7 +1,7 @@
 package com.xp.Controller;
 
 
-import com.xp.Model.Seat;
+import com.xp.Model.ShowSeat;
 import com.xp.Model.Show;
 import com.xp.Service.SeatService;
 import com.xp.Service.TicketService;
@@ -22,18 +22,18 @@ public class SeatController {
     }
 
     @GetMapping
-    public List<Seat> getAllSeats() {
+    public List<ShowSeat> getAllSeats() {
         return seatService.findAllSeats();
     }
 
     @GetMapping("/{id}")
-    public Seat getSeatById(@PathVariable Long id) {
+    public ShowSeat getSeatById(@PathVariable Long id) {
     return seatService.findSeatById(id);
     }
 
     @GetMapping("/show/{showId}")
-    public List<Seat> getSeatsForShow(@PathVariable Long showId) {
+    public List<ShowSeat> getSeatsForShow(@PathVariable Long showId) {
         Show show = ticketService.findShowById(showId);
-        return ticketService.getSeatsForShow(show);
+        return seatService.getSeatsForShow(show);
     }
 }

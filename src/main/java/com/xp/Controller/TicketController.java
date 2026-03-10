@@ -2,6 +2,7 @@ package com.xp.Controller;
 
 
 import com.xp.Model.*;
+import com.xp.Service.SeatService;
 import com.xp.Service.TicketService;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class TicketController {
 
     private final TicketService ticketService;
+    private final SeatService seatService;
 
-    public TicketController(TicketService ticketService) {
+    public TicketController(TicketService ticketService, SeatService seatService) {
         this.ticketService = ticketService;
+        this.seatService = seatService;
     }
 
     @GetMapping
@@ -42,9 +45,9 @@ public class TicketController {
                                      @RequestParam TicketType ticketType) {
 
         Show show = ticketService.findShowById(showId);
-        Seat seat = ticketService.findSeatById(seatId);
+        ShowSeat showSeat = ticketService.findSeatById(seatId);
 
-        return ticketService.createTicket(show, seat, ticketType);
+        return ticketService.createTicket(show, showSeat, ticketType);
     }
 
     @PostMapping("/show/{showId}/seat/{seatId}/override")
@@ -54,7 +57,7 @@ public class TicketController {
 
         //check for admin here (if we get to it)
 
-        ticketService.changeSeatTypeIfAdmin(showId, seatId, newAvailability);
+        seatService.changeSeatTypeIfAdmin(showId, seatId, newAvailability);
         return "Seat-type changed for this show";
     }
 }

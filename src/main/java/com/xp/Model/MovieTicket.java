@@ -17,8 +17,8 @@ public class MovieTicket {
     private Show show;
 
     @OneToOne
-    @JoinColumn(name = "seat_id", nullable = false)
-    private Seat seat;
+    @JoinColumn(name = "show_seat_id", nullable = false)
+    private ShowSeat showSeat;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id", nullable = false)
@@ -26,10 +26,10 @@ public class MovieTicket {
 
     public MovieTicket() {}
 
-    public MovieTicket(Double price, Show show, Seat seat) {
+    public MovieTicket(Double price, Show show, ShowSeat showSeat) {
         this.price = price;
         this.show = show;
-        this.seat = seat;
+        this.showSeat = showSeat;
     }
 
     public Long getMovieTicketId() {
@@ -44,12 +44,12 @@ public class MovieTicket {
         this.price = price;
     }
 
-    public Seat getSeat() {
-        return seat;
+    public ShowSeat getSeat() {
+        return showSeat;
     }
 
-    public void setSeat(Seat seat) {
-        this.seat = seat;
+    public void setSeat(ShowSeat showSeat) {
+        this.showSeat = showSeat;
     }
 
     public Show getShow() {
