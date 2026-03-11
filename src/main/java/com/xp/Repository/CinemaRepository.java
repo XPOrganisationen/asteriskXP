@@ -15,8 +15,6 @@ public interface CinemaRepository extends JpaRepository <Cinema, Long>
 
     List<Cinema> findByCinemaAddressContainingIgnoreCase(String cinemaAddress);
 
-    List<Cinema> findAllByOrderByCinemaNameAsc();
-
     @Query("""
             SELECT DISTINCT c
             FROM Cinema c
