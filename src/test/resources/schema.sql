@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS xpdb;
+USE xpdb;
 DROP TABLE IF EXISTS movie_tickets;
 DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS show_seats;
