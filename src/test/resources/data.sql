@@ -1,7 +1,6 @@
-
 INSERT INTO movies (movie_title, movie_description, movie_duration_minutes, movie_category, age_limit, is_3d) VALUES
-('Space Adventure', 'Sci-fi epic', 130, 'Sci-Fi', 12, TRUE),
-('Romantic Comedy', 'Light romance', 95, 'RomCom', 10, FALSE),
+('Space Adventure', 'Sci-fi epic', 130, 'Science Fiction', 12, TRUE),
+('Romantic Comedy', 'Light romance', 95, 'Romantic Comedy', 10, FALSE),
 ('Horror Night', 'Spine-chilling horror', 100, 'Horror', 18, FALSE),
 ('Documentary: Nature', 'Wildlife documentary', 60, 'Documentary', 0, FALSE),
 ('Animated Fun', 'Family animation', 80, 'Animation', 0, TRUE);
