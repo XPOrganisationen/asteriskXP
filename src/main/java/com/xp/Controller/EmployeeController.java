@@ -20,9 +20,9 @@ public class EmployeeController {
         return this.employeeService.findAll();
     }
 
-    @GetMapping("{adminId}")
-    public Employee getEmployeeById(@PathVariable Long adminId) {
-        return this.employeeService.findById(adminId);
+    @GetMapping("{employeeId}")
+    public Employee getEmployeeById(@PathVariable Long employeeId) {
+        return this.employeeService.findById(employeeId);
     }
 
     @GetMapping("by-name/{employeeName}")
@@ -40,8 +40,8 @@ public class EmployeeController {
         return this.employeeService.updateEmployee(employee);
     }
 
-    @DeleteMapping("{adminId}")
-    public void deleteEmployee(@PathVariable Long adminId) {
-        this.employeeService.deleteEmployee(adminId);
+    @DeleteMapping("{employeeId}")
+    public void deleteEmployee(@PathVariable Long employeeId) {
+        this.employeeService.deleteEmployee(employeeId);
     }
 }
