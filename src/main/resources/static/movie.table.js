@@ -1,4 +1,4 @@
-export function EmployeeTable(element, store, onEdit) {
+export function MovieTable(element, store, onEdit) {
 
     const resetTable = () => {
         element.innerHTML = "";
@@ -11,7 +11,7 @@ export function EmployeeTable(element, store, onEdit) {
         element.removeEventListener("change", onChange);
     };
 
-    const render = ({ employees, isLoading, error }) => {
+    const render = ({movies, isLoading, error }) => {
         resetTable();
 
         if (error && error.type === "FetchError") {
@@ -28,14 +28,16 @@ export function EmployeeTable(element, store, onEdit) {
             return;
         }
 
-        employees.forEach(employee => {
+        movies.forEach(movie => {
             const tr = document.createElement("tr");
-            tr.setAttribute("data-id", employee.employeeId);
+            tr.setAttribute("data-id", movie.movieId);
             tr.innerHTML =  `
-                <td>${employee.employeeName}</td>
-                <td>${employee.employeeRole}</td>
-                <td>${employee.employeeUsername}</td>
-                <td>${employee.employeePassword}</td>
+                <td>${movie.movieTitle}</td>
+                <td>${movie.movieDescription}</td>
+                <td>${movie.movieDuration}</td>
+                <td>${movie.movieCategory}</td>
+                <td>${movie.ageLimit}</td>
+                <td>${movie.is_3d}</td>
                 <td>
                     <div class="gap-2 flex">
                         <button data-action="edit" class="btn btn-warning">Edit</button>
@@ -52,16 +54,16 @@ export function EmployeeTable(element, store, onEdit) {
         if (id === undefined) return;
 
         if (event.target.getAttribute("data-action") === "delete") {
-            if (!confirm('Are you sure you want to delete this employee?')) {
+            if (!confirm('Are you sure you want to delete this movie?')) {
                 return;
             }
-            await store.removeEmployee(id);
+            await store.removeMovie(id);
             return;
         }
 
         if (event.target.getAttribute("data-action") === "edit") {
-            const employee = store.getEmployeeById(id);
-            onEdit(employee);
+            const movie = store.getMovieById(id);
+            onEdit(movie);
             return;
         }
 
@@ -74,8 +76,8 @@ export function EmployeeTable(element, store, onEdit) {
             if (!row || !row.dataset.id) return;
             const id = parseInt(row.dataset.id);
 
-            const employee = store.getEmployeeById(id);
-            await store.changeEmployee(id, { ...employee});
+            const movie = store.getMovieById(id);
+            await store.changeMovie(id, { ...movie});
         }
     };
 
