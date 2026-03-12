@@ -21,11 +21,15 @@ export function EmployeeForm(element, store) {
         const employeeId = formData.get("employeeId");
         const role = formData.get("role")
         const id = formData.get("employeeId");
+        const username = formData.get("username")
+        const password = formData.get("password");
 
         const employee = {
             name,
-            adminId: Number(employeeId),
-            role
+            employeeId: Number(employeeId),
+            role,
+            username,
+            password
         };
 
         if (id) {
@@ -57,6 +61,8 @@ export function EmployeeForm(element, store) {
         element.querySelector("input[name='name']").value = employee.employeeName;
         element.querySelector("input[name='employeeId']").value = employee.employeeId;
         element.querySelector("input[name='role']").value = employee.employeeRole;
+        element.querySelector("input[name='username']").value = employee.employeeUsername;
+        element.querySelector("input[name='password']").value = employee.employeePassword;
         element.querySelector("input[name='id']").value = employee.id;
 
         document.querySelector("#cancelEditBtn").classList.remove("hidden");

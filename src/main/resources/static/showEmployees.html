@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         body {
             padding: 20px;
@@ -39,6 +40,11 @@
 </head>
 
 <body>
+<header id="index-header">
+    <h2>KinoXP</h2>
+    <a href="index.html">Log out</a>
+</header>
+
 <h1 class="text-center">Ansatte</h1>
 
 <form id="employeeForm">
@@ -46,6 +52,8 @@
     <input type="text" id="employeeId" name="employeeId" placeholder="indtast id for ansat" required>
     <input type="text" id="name" name="name" placeholder="Indtast navn på ansat" required>
     <input type="text" id="role" name="role" placeholder="Indtast rolle for ansat" required>
+    <input type="text" id="username" name="username" placeholder="Indtast brugernavn for ansat" required>
+    <input type="text" id="password" name="password" placeholder="Indtast adgangskode for ansat" required>
     <button type="button" id="cancelEditBtn" class="btn btn-secondary hidden">Cancel Edit</button>
     <button type="submit" class="btn btn-primary">Tilføj Ansat</button>
 </form>
@@ -53,10 +61,10 @@
 <table class="table">
     <thead>
     <tr>
-        <!--<th scope="col">ID</th>-->
-        <!--<th scope="col">Admin ID</th>-->
         <th scope="col">Name</th>
         <th scope="col">Rolle</th>
+        <th scope="col">Brugernavn</th>
+        <th scope="col">Adgangskode</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -64,7 +72,7 @@
     </tbody>
 </table>
 
-<script type="module" src="./app.js"></script>
+<script type="module" src="employee.admin.js"></script>
 </body>
 
 </html>

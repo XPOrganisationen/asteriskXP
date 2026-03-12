@@ -1,29 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>XPKino - Employees</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        tbody tr {
+            cursor: pointer;
+        }
+
+        tbody tr td button {
+            pointer-events: all;
+        }
+
+        #index-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 70px;
+            background-color: black;
+            color: white;
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>Movie Page</title>
 </head>
+
 <body>
 <header id="index-header">
-    <a href="index.html">Log out</a>
-    <div class="spacer" aria-hidden="true"></div>
     <h2>KinoXP</h2>
-    <div class="spacer" aria-hidden="true"></div>
+    <a href="index.html">Log out</a>
 </header>
-<main>
-    <h2>Film</h2>
 
-    <table id="movieTable">
-        <tr>
-            <th>Titel</th><th>Genre</th>
-        </tr>
-    </table>
+<h1 class="text-center">Film</h1>
 
-</main>
+<form id="movieForm">
+    <input type="hidden" id="id" name="id">
+    <input type="number" id="movieId" name="movieId" placeholder="indtast id for film" required>
+    <input type="text" id="title" name="title" placeholder="Indtast titel på film" required>
+    <input type="text" id="description" name="description" placeholder="Indtast beskrivelse for film" required>
+    <input type="number" id="duration" name="duration" placeholder="Indtast varighed for film i minutter" required>
+    <input type="text" id="category" name="category" placeholder="Indtast kategori for film" required>
+    <input type="number" id="ageLimit" name="ageLimit" placeholder="Indtast aldersbegrænsning for film" required>
+    <input type="checkbox" id="is3d" name="is3d" placeholder="3D">
+    <button type="button" id="cancelEditBtn" class="btn btn-secondary hidden">Cancel Edit</button>
+    <button type="submit" class="btn btn-primary">Tilføj Ansat</button>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Titel</th>
+        <th scope="col">Beskrivelse</th>
+        <th scope="col">Varighed</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Aldersbegrænsning</th>
+        <th scope="col">3D</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody id="movieTableBody">
+    </tbody>
+</table>
+
+<script type="module" src="movie.admin.js"></script>
 </body>
-<script src="movie.js"></script>
+
 </html>
