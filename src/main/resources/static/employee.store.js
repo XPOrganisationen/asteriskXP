@@ -54,7 +54,7 @@ export function EmployeeStore() {
         error = null;
         const tempId = -Date.now();
         const optimisticEmployee = { ...employee, employeeId: tempId };
-        employee = [...employee, optimisticEmployee];
+        employees = [...employees, optimisticEmployee];
         notify();
 
         try {
@@ -67,22 +67,22 @@ export function EmployeeStore() {
                 message: "Failed to create employee. Please try again.",
                 type: "CreateError"
             };
-            employees = employees.filter(t => t.id !== tempId);
+            employees = employees.filter(t => t.employeeId !== tempId);
         }
         notify();
     }
 
-    async function changeEmployee(id, employee) {
+    async function changeEmployee(employeeId, employee) {
         error = null;
         const previousEmployees = [...employees];
 
         employees = employees.map(t =>
-            t.id === Number(id) ? { ...employee, id: Number(id) } : t
+            t.employeeId === Number(employeeId) ? { ...employee, employeeId: Number(employeeId) } : t
         );
         notify();
 
         try {
-            await updateEmployee(id, employee);
+            await updateEmployee(employeeId, employee);
             error = null;
         } catch (err) {
             error = {
@@ -94,15 +94,15 @@ export function EmployeeStore() {
         notify();
     }
 
-    async function removeEmployee(id) {
+    async function removeEmployee(employeeId) {
         error = null;
         const previousEmployees = [...employees];
 
-        employees = employees.filter(employee => employee.employeeId !== Number(id));
+        employees = employees.filter(employee => employee.employeeId !== Number(employeeId));
         notify();
 
         try {
-            await deleteEmployee(id);
+            await deleteEmployee(employeeId);
             error = null;
         } catch (err) {
             error = {
@@ -114,8 +114,9 @@ export function EmployeeStore() {
         notify();
     }
 
-    const getEmployeeById = (id) => {
-        return employees.find(employee => employee.employeeId === Number(id));
+    const getEmployeeById = (employeeId) => {
+        let employee = employees.find(employee => employee.employeeId === Number.parseInt(employeeId));
+        return employee;
     };
 
     const init = async () => {

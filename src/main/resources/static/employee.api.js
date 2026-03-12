@@ -25,7 +25,7 @@ export async function createEmployee(employee) {
 }
 
 export async function updateEmployee(employeeId, employee) {
-    const response = await fetch(`${BASE_URL_EMPLOYEES}${employeeId}`, {
+    const response = await fetch(`${BASE_URL_EMPLOYEES}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ export function EmployeeForm(element, store) {
 
     const resetForm = () => {
         element.reset();
-        element.querySelector("input[name='adminId']").value = "";
+        element.querySelector("input[name='employeeId']").value = "";
         document.querySelector("#cancelEditBtn").classList.add("hidden");
         document.querySelector("[type='submit']").textContent = "Add Employee";
     };
@@ -20,7 +20,7 @@ export function EmployeeForm(element, store) {
         const name = formData.get("name");
         const employeeId = formData.get("employeeId");
         const role = formData.get("role")
-        const id = formData.get("id");
+        const id = formData.get("employeeId");
 
         const employee = {
             name,
@@ -54,9 +54,9 @@ export function EmployeeForm(element, store) {
     };
 
     const fillForm = (employee) => {
-        element.querySelector("input[name='name']").value = employee.name;
+        element.querySelector("input[name='name']").value = employee.employeeName;
         element.querySelector("input[name='employeeId']").value = employee.employeeId;
-        element.querySelector("input[name='role']").value = employee.role;
+        element.querySelector("input[name='role']").value = employee.employeeRole;
         element.querySelector("input[name='id']").value = employee.id;
 
         document.querySelector("#cancelEditBtn").classList.remove("hidden");

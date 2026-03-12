@@ -30,7 +30,7 @@ export function EmployeeTable(element, store, onEdit) {
 
         employees.forEach(employee => {
             const tr = document.createElement("tr");
-            tr.setAttribute("data-id", employee.id);
+            tr.setAttribute("data-id", employee.employeeId);
             tr.innerHTML =  `
                 <td>${employee.employeeName}</td>
                 <td>${employee.employeeRole}</td>
@@ -58,8 +58,8 @@ export function EmployeeTable(element, store, onEdit) {
         }
 
         if (event.target.getAttribute("data-action") === "edit") {
-            const todo = store.getEmployeeById(id);
-            onEdit(todo);
+            const employee = store.getEmployeeById(id);
+            onEdit(employee);
             return;
         }
 
