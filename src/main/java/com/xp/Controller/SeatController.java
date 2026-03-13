@@ -2,6 +2,11 @@ package com.xp.Controller;
 
 
 import com.xp.Model.*;
+import com.xp.Model.SeatAvailability;
+import com.xp.Model.SeatType;
+import com.xp.Model.SeatAvailability;
+import com.xp.Model.ShowSeat;
+import com.xp.Model.Show;
 import com.xp.Service.SeatService;
 import com.xp.Service.ShowService;
 import com.xp.Service.TicketService;
@@ -61,5 +66,14 @@ public class SeatController {
     public ResponseEntity<Void> deleteSeat(Long seatId) {
         seatService.deleteSeat(seatId);
         return ResponseEntity.noContent().build();
+    @PostMapping("/show/{showId}/seat/{seatId}/override")
+    public String overrideSeatForShow(@PathVariable Long showId,
+                                      @PathVariable Long seatId,
+                                      @RequestParam SeatAvailability newAvailability) {
+
+        //check for admin here (if we get to it)
+
+        seatService.changeSeatTypeIfAdmin(showId, seatId, newAvailability);
+        return "Seat-type changed for this show";
     }
 }
