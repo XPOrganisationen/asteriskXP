@@ -3,11 +3,7 @@ package com.xp.Controller;
 
 import com.xp.Model.*;
 import com.xp.Model.DTOs.TicketSales;
-import com.xp.Service.MovieService;
-import com.xp.Service.SeatService;
-import com.xp.Service.ShowService;
-import com.xp.Service.TicketService;
-import org.springframework.beans.factory.ListableBeanFactory;
+import com.xp.Service.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,7 +18,7 @@ public class TicketController {
     private final MovieService movieService;
     private final ShowService showService;
 
-    public TicketController(TicketService ticketService, SeatService seatService, MovieService movieService, ListableBeanFactory listableBeanFactory, ShowService showService) {
+    public TicketController(TicketService ticketService, SeatService seatService, MovieService movieService, ShowService showService) {
         this.ticketService = ticketService;
         this.seatService = seatService;
         this.movieService = movieService;
@@ -53,7 +49,7 @@ public class TicketController {
 
             for (Show show : shows) {
                 for (MovieTicket ticket : allTickets) {
-                    if (ticket.getShow().getShowId().equals(show.getShowId())) {
+                    if (ticket.getSeat().getShow().getShowId().equals(show.getShowId())) {
                         totalTicketsSold++;
                         totalRevenue += ticket.getPrice();
                     }
@@ -64,32 +60,16 @@ public class TicketController {
         return salesList;
     }
 
-    @PostMapping("/calculate")
-    public double calculateTotalPrice(@RequestParam TicketType ticketType,
-                                      @RequestParam SeatType seatType,
-                                      @RequestParam int quantity,
-                                      @RequestBody Movie movie)
-    {
-        return ticketService.calculateTotalPrice(ticketType, seatType, quantity, movie);
-    }
-
     @PostMapping("/reserve")
     public MovieTicket reserveTicket(@RequestParam Long seatId,
                                      @RequestParam TicketType ticketType) {
 
         ShowSeat showSeat = seatService.findSeatById(seatId);
         return ticketService.createTicket(showSeat, ticketType);
-    }
-}
-
-        //check for admin here (if we get to it)
-
-        seatService.changeSeatTypeIfAdmin(showId, seatId, newAvailability);
-        return "Seat-type changed for this show";
-    }
+                }
 
     @GetMapping("all-ticket-types")
     public List<TicketType> getAllTicketTypes() {
-        return List.of(TicketType.values());
+     return List.of(TicketType.values());
     }
 }

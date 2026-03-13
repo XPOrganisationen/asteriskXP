@@ -115,25 +115,25 @@ SET @res_anim = (SELECT reservation_id FROM reservations WHERE customer_email='e
 -- Insert movie_tickets with non-NULL reservation_id (each ticket assigned to an existing reservation)
 INSERT INTO movie_tickets (price, show_id, show_seat_id, reservation_id) VALUES
 -- Horror show tickets (each with its own reservation)
-(12.50, @show_horror, @t2_showseat_1, @res_horror_1),
-(12.50, @show_horror, @t2_showseat_2, @res_horror_2),
-(12.50, @show_horror, (SELECT ss.show_seat_id FROM show_seats ss WHERE ss.show_id=@show_horror ORDER BY ss.show_seat_id LIMIT 1 OFFSET 2), @res_horror_3),
+(165.00, @show_horror, @t2_showseat_1, @res_horror_1),
+(165.00, @show_horror, @t2_showseat_2, @res_horror_2),
+(165.00, @show_horror, (SELECT ss.show_seat_id FROM show_seats ss WHERE ss.show_id=@show_horror ORDER BY ss.show_seat_id LIMIT 1 OFFSET 2), @res_horror_3),
 
 -- Space Adventure tickets (two reservations, multiple seats)
-(15.00, @show_space_1, @t1_showseat_1, @res_space1_1),
-(15.00, @show_space_1, @t1_showseat_2, @res_space1_2),
-(15.00, @show_space_1, @t1_showseat_3, @res_space1_1),
-(15.00, @show_space_1, @t1_showseat_4, @res_space1_2),
+(175.00, @show_space_1, @t1_showseat_1, @res_space1_1),
+(175.00, @show_space_1, @t1_showseat_2, @res_space1_2),
+(175.00, @show_space_1, @t1_showseat_3, @res_space1_1),
+(175.00, @show_space_1, @t1_showseat_4, @res_space1_2),
 
 -- Space Adventure (second show)
-(15.00, @show_space_2, @t1_showseat_5, @res_space2_1),
-(15.00, @show_space_2, @t1_showseat_6, @res_space2_1),
+(175.00, @show_space_2, @t1_showseat_5, @res_space2_1),
+(175.00, @show_space_2, @t1_showseat_6, @res_space2_1),
 
 -- RomCom past/future and Animated
-(10.00, @show_romcom_past, (SELECT ss.show_seat_id FROM show_seats ss WHERE ss.show_id=@show_romcom_past ORDER BY ss.show_seat_id LIMIT 1), @res_romcom_future),
-(10.00, @show_romcom_future, @t3_showseat_1, @res_romcom_future),
-(9.00, @show_anim, @t3_showseat_2, @res_anim),
-(9.00, @show_anim, @t3_showseat_3, @res_anim);
+(150.00, @show_romcom_past, (SELECT ss.show_seat_id FROM show_seats ss WHERE ss.show_id=@show_romcom_past ORDER BY ss.show_seat_id LIMIT 1), @res_romcom_future),
+(150.00, @show_romcom_future, @t3_showseat_1, @res_romcom_future),
+(160.00, @show_anim, @t3_showseat_2, @res_anim),
+(160.00, @show_anim, @t3_showseat_3, @res_anim);
 
 -- Mark corresponding show_seats as RESERVED (safe WHERE uses primary key non-NULL)
 UPDATE show_seats ss
