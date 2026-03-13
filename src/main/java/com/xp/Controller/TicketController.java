@@ -66,10 +66,10 @@ public class TicketController {
 
         ShowSeat showSeat = seatService.findSeatById(seatId);
         return ticketService.createTicket(showSeat, ticketType);
-    }
+                }
 
     @GetMapping("all-ticket-types")
     public List<TicketType> getAllTicketTypes() {
-        return List.of(TicketType.values());
+     return List.of(TicketType.values());
     }
 }
