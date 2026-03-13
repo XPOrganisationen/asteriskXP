@@ -3,7 +3,6 @@ package com.xp;
 import com.xp.Model.ShowSeat;
 import com.xp.Repository.ShowSeatRepository;
 import com.xp.Repository.ShowRepository;
-import com.xp.Repository.TicketRepository;
 import com.xp.Service.SeatService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

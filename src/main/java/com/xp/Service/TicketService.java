@@ -1,9 +1,6 @@
 package com.xp.Service;
 
 import com.xp.Model.*;
-import com.xp.Repository.ReservationRepository;
-import com.xp.Repository.ShowSeatRepository;
-import com.xp.Repository.ShowRepository;
 import com.xp.Repository.TicketRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
