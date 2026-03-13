@@ -13,25 +13,20 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class TestShowSeatService {
 
     private ShowSeatRepository showSeatRepository;
-    private TicketRepository ticketRepository;
-    private ShowRepository showRepository;
     private SeatService seatService;
 
 
     @BeforeEach
     void setUp() {
         showSeatRepository = mock(ShowSeatRepository.class);
-        ticketRepository = mock(TicketRepository.class);
-        showRepository = mock(ShowRepository.class);
-        seatService = new SeatService(showSeatRepository,  showRepository);
-
+        ShowRepository showRepository = mock(ShowRepository.class);
+        seatService = new SeatService(showSeatRepository, showRepository);
     }
 
     /*@Test

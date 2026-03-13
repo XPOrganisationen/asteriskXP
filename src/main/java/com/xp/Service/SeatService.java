@@ -5,7 +5,6 @@ import com.xp.Model.Show;
 import com.xp.Model.ShowSeat;
 import com.xp.Repository.ShowSeatRepository;
 import com.xp.Repository.ShowRepository;
-import com.xp.Repository.TicketRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

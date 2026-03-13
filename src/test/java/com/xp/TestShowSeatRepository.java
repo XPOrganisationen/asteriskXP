@@ -34,15 +34,13 @@ public class TestShowSeatRepository {
     @Autowired
     private MovieRepository movieRepository;
 
-    private Cinema cinema;
     private Theater bigTheater;
     private Theater smallTheater;
     private Show testShow;
-    private Movie movie;
 
     @BeforeEach
     void setUp() {
-        cinema = new Cinema();
+        Cinema cinema = new Cinema();
         cinema.setCinemaAddress("Test Cinema");
         cinemaRepository.save(cinema);
 
@@ -52,7 +50,7 @@ public class TestShowSeatRepository {
         smallTheater = new Theater(cinema, "Small Theater", 15, 10);
         theaterRepository.save(smallTheater);
 
-        movie = new Movie();
+        Movie movie = new Movie();
         movie.setMovieTitle("Transformers");
         movie.setMovieDuration(134.0);
         movie.setMovieCategory("Action");
