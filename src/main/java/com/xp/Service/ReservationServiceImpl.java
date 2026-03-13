@@ -1,10 +1,8 @@
 package com.xp.Service;
 
 import com.xp.Exceptions.EntityDoesNotExistException;
-import com.xp.Model.Movie;
 import com.xp.Model.MovieTicket;
 import com.xp.Model.Reservation;
-import com.xp.Model.Show;
 import com.xp.Repository.ReservationRepository;
 import com.xp.Repository.ShowRepository;
 import org.springframework.stereotype.Service;

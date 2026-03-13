@@ -1,15 +1,11 @@
 package com.xp.Controller;
 
 
-import com.xp.Model.*;
 import com.xp.Model.SeatAvailability;
-import com.xp.Model.SeatType;
-import com.xp.Model.SeatAvailability;
-import com.xp.Model.ShowSeat;
 import com.xp.Model.Show;
+import com.xp.Model.ShowSeat;
 import com.xp.Service.SeatService;
 import com.xp.Service.ShowService;
-import com.xp.Service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

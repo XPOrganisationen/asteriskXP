@@ -1,9 +1,12 @@
 package com.xp.Controller;
 
 
-import com.xp.Model.*;
 import com.xp.Model.DTOs.TicketSales;
-import com.xp.Service.*;
+import com.xp.Model.*;
+import com.xp.Service.MovieService;
+import com.xp.Service.SeatService;
+import com.xp.Service.ShowService;
+import com.xp.Service.TicketService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

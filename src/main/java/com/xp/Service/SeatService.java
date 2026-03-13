@@ -1,6 +1,5 @@
 package com.xp.Service;
 
-import com.xp.Model.MovieTicket;
 import com.xp.Model.SeatAvailability;
 import com.xp.Model.Show;
 import com.xp.Model.ShowSeat;
