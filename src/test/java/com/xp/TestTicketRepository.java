@@ -26,7 +26,7 @@ public class TestTicketRepository {
     private TicketRepository ticketRepository;
 
     @Autowired
-    private SeatRepository seatRepository;
+    private ShowSeatRepository showSeatRepository;
 
     @Autowired
     private ShowRepository showRepository;
@@ -74,7 +74,7 @@ public class TestTicketRepository {
 
 
         showSeat = new ShowSeat(seat, show, SeatAvailability.VACANT);
-        seatRepository.save(showSeat);
+        showSeatRepository.save(showSeat);
     }
 
     @Test

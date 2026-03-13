@@ -1,14 +1,12 @@
 package com.xp;
 
 import com.xp.Model.ShowSeat;
-import com.xp.Model.Theater;
-import com.xp.Repository.SeatRepository;
+import com.xp.Repository.ShowSeatRepository;
 import com.xp.Repository.ShowRepository;
 import com.xp.Repository.TicketRepository;
 import com.xp.Service.SeatService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
@@ -21,7 +19,7 @@ import static org.mockito.Mockito.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class TestShowSeatService {
 
-    private SeatRepository seatRepository;
+    private ShowSeatRepository showSeatRepository;
     private TicketRepository ticketRepository;
     private ShowRepository showRepository;
     private SeatService seatService;
@@ -29,11 +27,10 @@ public class TestShowSeatService {
 
     @BeforeEach
     void setUp() {
-        seatRepository = mock(SeatRepository.class);
+        showSeatRepository = mock(ShowSeatRepository.class);
         ticketRepository = mock(TicketRepository.class);
         showRepository = mock(ShowRepository.class);
-
-        seatService = new SeatService(seatRepository, ticketRepository, showRepository);
+        seatService = new SeatService(showSeatRepository,  showRepository);
 
     }
 
@@ -86,12 +83,12 @@ public class TestShowSeatService {
 
         List<ShowSeat> showSeats = List.of(new ShowSeat(), new ShowSeat());
 
-        when(seatRepository.findAll()).thenReturn(showSeats);
+        when(showSeatRepository.findAll()).thenReturn(showSeats);
 
         List<ShowSeat> result = seatService.findAllSeats();
 
         assertEquals(2, result.size());
-        verify(seatRepository).findAll();
+        verify(showSeatRepository).findAll();
     }
 
     @Test
@@ -99,12 +96,12 @@ public class TestShowSeatService {
 
         ShowSeat showSeat = new ShowSeat();
 
-        when(seatRepository.findById(1L)).thenReturn(Optional.of(showSeat));
+        when(showSeatRepository.findById(1L)).thenReturn(Optional.of(showSeat));
 
         ShowSeat result = seatService.findSeatById(1L);
 
         assertEquals(showSeat, result);
-        verify(seatRepository).findById(1L);
+        verify(showSeatRepository).findById(1L);
     }
 
     /*@Test
